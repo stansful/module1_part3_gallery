@@ -2,13 +2,6 @@ const gallery = document.querySelector('#gallery')
 const previousButton = document.querySelector('#previous')
 const nextButton = document.querySelector('#next')
 
-const queryRegex = /\?page=[1-5]/
-
-if (location.search.match(queryRegex)) {
-    const pageNumber = location.search.split('?page=').pop()
-    setNewPage(pageNumber)
-}
-
 const updateQueryParams = (pageNumber) => {
     if (location.search !== `?page=${pageNumber}`) {
         location.search = `?page=${pageNumber}`
@@ -47,6 +40,8 @@ const showGallery = async (page, token) => {
 
     data.objects.forEach(imgLink => gallery.innerHTML += `<img src="${imgLink}" width="200" height="200" alt="img">`)
 }
+
+validatePage()
 
 showGallery(getCurrentPage(), getToken())
 

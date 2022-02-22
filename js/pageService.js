@@ -13,3 +13,15 @@ const getCurrentPage = () => {
 
     return localStorage.getItem(PAGE)
 }
+
+const validatePage = () => {
+    const queryRegex = /\?page=[1-5]/
+
+    if (location.search.match(queryRegex)) {
+        const pageNumber = location.search.split('?page=').pop()
+        setNewPage(pageNumber)
+    } else {
+        alert('Page didnt exist, we set page to 1')
+        setNewPage()
+    }
+}
