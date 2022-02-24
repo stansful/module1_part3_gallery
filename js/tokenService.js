@@ -21,3 +21,10 @@ const removeToken = () => {
     localStorage.removeItem(TOKEN)
     localStorage.removeItem(TOKEN_EXPIRES_TIME)
 }
+
+const removeTokenWithTimeout = () => {
+    const expiresTime = getTokenExpirationTime()
+    setTimeout(() => {
+        redirectToIndex()
+    }, expiresTime)
+}
