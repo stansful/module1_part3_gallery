@@ -23,14 +23,11 @@ const previousButtonEvent = async () => {
 }
 
 const showGallery = async (page, token) => {
-    const expired = checkTokenForExpiration()
-
-    if (expired) {
-        removeToken()
-        nextButton.removeEventListener(EVENT_TYPES.click, nextButtonEvent)
-        previousButton.removeEventListener(EVENT_TYPES.click, previousButtonEvent)
-        return document.location.replace('./index.html')
-    }
+    // const expired = checkTokenForExpiration()
+    //
+    // if (expired) {
+    //     redirectToIndex()
+    // }
 
     updateQueryParams(page)
 
@@ -40,6 +37,15 @@ const showGallery = async (page, token) => {
 
     data.objects.forEach(imgLink => gallery.innerHTML += `<img src="${imgLink}" width="200" height="200" alt="img">`)
 }
+
+const redirectToIndex = () => {
+    removeToken()
+    nextButton.removeEventListener(EVENT_TYPES.click, nextButtonEvent)
+    previousButton.removeEventListener(EVENT_TYPES.click, previousButtonEvent)
+    return document.location.replace('./index.html')
+}
+
+removeTokenWithTimeout()
 
 validatePage()
 
